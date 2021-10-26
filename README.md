@@ -1,5 +1,5 @@
 # ProjectRPG
-First attempt at creating a RPG game using .NET and Angular
+First attempt at creating a RPG game using C# and Angular
 
 A simple RPG like game where you walk around, kill monsters, complete quests and level up.
 
