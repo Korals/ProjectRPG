@@ -3,7 +3,7 @@ First attempt at creating a RPG game using .NET and Angular
 
 A simple RPG like game where you walk around, kill monsters, complete quests and level up.
 
-######**TODO:**
+###### **TODO:**
 
 **Add skills:**
 _**ALL SKILLS AVAILABLE FOR PLAYER (No class specific, certain requirement)**_
