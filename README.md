@@ -5,16 +5,15 @@ A simple RPG like game where you walk around, kill monsters, complete quests and
 
 #### **TODO:**
 
-**Add skills:**
-_**ALL SKILLS AVAILABLE FOR PLAYER (No class specific, certain requirement)**_
+**Add skills**
+_**(All skills are available for players to use, but some have requirements to be met):**_
 * [ ] Hard coded skills (Melee, Ranged, Magic):
 * [ ] Player picks 5 skils at creation (low level);
 * [ ] Ability to get new skills:
   * [ ] After boss kill;
   * [ ] After X levels (pick x extra);
   * [ ] Quest rewards??;
-
-**Add LevelUp system**
+**Add LevelUp system:**
 * [ ] _Experience points:_
   * [ ] Get XP for kills;
   * [ ] Get XP for quests???
