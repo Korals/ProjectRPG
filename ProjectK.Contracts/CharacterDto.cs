@@ -14,5 +14,8 @@ namespace ProjectK.Contracts
         public WeaponDto Weapon { get; set; }
         public StatisticsDto Statistics { get; set; }
         public IList<SkillDto> Skills { get; set; }
+        public int Level { get; set; }
+        public long TotalXp { get; set; }
+        public ExperienceDto Experience { get; set; }
     }
 }
