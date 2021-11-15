@@ -6,12 +6,11 @@ namespace ProjectK.Business.ExperiencePoints
 {
     public interface IExperienceEdit
     {
-        IExperienceEdit ForChar(int charId);
+        IExperienceEdit ForCharacter(int charId);
         IExperienceEdit WithXpToLevel(ExperienceDto experience);
     }
     public class Experience : IExperienceEdit
     {
-        [Key]
         public int Level { get; set; }
         public int XpToLevel { get; set; }
         public int CurrentXP { get; set; }
@@ -41,7 +40,7 @@ namespace ProjectK.Business.ExperiencePoints
             CurrentXP = experience.CurrentXp;
         }
 
-        public IExperienceEdit ForChar(int charId)
+        public IExperienceEdit ForCharacter(int charId)
         {
             if (charId <= 0) throw new ArgumentOutOfRangeException(nameof(charId));
 

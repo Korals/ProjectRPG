@@ -39,7 +39,7 @@ namespace ProjectK.Business.Characters
         // public ICollection<Skill> Skills { get; } = new HashSet<Skill>();
 
         public int Level { get; private set; }
-        public long TotalXp { get; set; }
+        public long TotalXp { get; private set; }
         public Experience Experience { get; private set; }
 
         public Character()

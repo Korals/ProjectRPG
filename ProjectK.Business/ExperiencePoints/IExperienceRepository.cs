@@ -8,9 +8,9 @@ namespace ProjectK.Business.ExperiencePoints
 {
     public interface IExperienceRepository
     {
-        Task<Experience> GetCharacterXpToLevel(int charId);
-        Task<Experience> GetCharacterCurrentXp(int charId);
-        Task<Experience> GetCharacterLevel(int charId);
+        Task<Experience> GetCharacterXpToLevelAsync(int charId);
+        Task<Experience> GetCharacterCurrentXpAsync(int charId);
+        Task<Experience> GetCharacterLevelAsync(int charId);
         Task SaveCharacterXp();
         Task SaveXpToLevel(Experience experience);
     }

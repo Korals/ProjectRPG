@@ -10,9 +10,9 @@ namespace ProjectK.Business.ExperiencePoints
     {
         private readonly IExperienceRepository _repository;
         private readonly ICharacterRepository _characterRepository;
-        private readonly ILogger _logger;
+        private readonly ILogger<ExperienceService> _logger;
 
-        public ExperienceService(IExperienceRepository repository, ICharacterRepository characterRepository, ILogger logger)
+        public ExperienceService(IExperienceRepository repository, ICharacterRepository characterRepository, ILogger<ExperienceService> logger)
         {
             _repository = repository;
             _characterRepository = characterRepository;
@@ -20,27 +20,34 @@ namespace ProjectK.Business.ExperiencePoints
         }
 
 
-        public async Task<ExperienceDto> GetCharacterLevel(int charId)
+        public async Task<ExperienceDto> GetCharacterLevelAsync(int charId)
         {
             _logger.LogInformation("Get character level: {charId}", charId);
 
-            var charLevel = await _repository.GetCharacterLevel(charId);
+            var charLevel = await _repository.GetCharacterLevelAsync(charId);
 
             return charLevel?.ToDto();
         }
 
-        public Task<ExperienceDto> GetLevelUp(int charId)
+        public async Task<ExperienceDto> GetLevelUpAsync(int charId)
         {
             _logger.LogInformation("Is character ready to levelUp: {charId}", charId);
-            var currentXp = _repository.GetCharacterCurrentXp(charId);
+            var currentXp = _repository.GetCharacterCurrentXpAsync(charId);
 
         }
 
-        public Task<ExperienceDto> GetXpToLevel(int charId)
+        public async Task<ExperienceDto> GetXpToLevelAsync(int charId)
         {
-            throw new System.NotImplementedException();
+            var character = await _characterRepository.GetCharacterByIdAsync(charId);
+
+             character.Experience.XpToLevel = character.Level == 1 ? 30
+                : character.Level == 100 ? 0
+                : character.Level >= 50 ? (int)(((character.Level - 1) * (double)1.13) + 30)
+                : (int)(((character.Level - 1) * (double)1.15) + 30);
+
+            return character.Experience.XpToLevel;
         }
-        public Task<ExperienceDto> GenerateExperienceToLevel(ExperienceDto model)
+        public async Task<ExperienceDto> GenerateExperienceToLevelAsync(ExperienceDto model)
         {
             if (model is null) throw new ArgumentNullException(nameof(model));
 
@@ -49,7 +56,7 @@ namespace ProjectK.Business.ExperiencePoints
 
             experience.WithXpToLevel(model.XpToLevel);
 
-            return _repository.SaveXpToLevel(experience);
+            return await _repository.SaveXpToLevel(experience);
 
         }
     }

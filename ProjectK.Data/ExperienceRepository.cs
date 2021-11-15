@@ -18,44 +18,34 @@ namespace ProjectK.Data
             _context = context;
         }
 
-
-        public Task<Experience> GetCharacterCurrentXp(int charId)
+        public Task<Experience> GetCharacterCurrentXpAsync(int charId)
         {
-            var querry = _context.Experiences
+            var query = _context.Experiences
                 .Include(c => c.CharacterId)
                 .Include(c => c.CurrentXP)
                 .AsQueryable();
 
-            return querry.FirstOrDefaultAsync(c => c.CharacterId == charId);
+            return query.FirstOrDefaultAsync(c => c.CharacterId == charId);
         }
 
-        public Task<Experience> GetCharacterLevel(int charId)
+        public Task<Experience> GetCharacterLevelAsync(int charId)
         {
-            var querry = _context.Experiences
+            var query = _context.Experiences
                 .Include(c => c.CharacterId)
                 .Include(c => c.Level)
                 .AsQueryable();
 
-            return querry.FirstOrDefaultAsync(c => c.CharacterId == charId);
+            return query.FirstOrDefaultAsync(c => c.CharacterId == charId);
         }
 
-        public Task<Experience> GetCharacterXpToLevel(int charId)
+        public Task<Experience> GetCharacterXpToLevelAsync(int charId)
         {
-            var querry = _context.Experiences
+            var query = _context.Experiences
                 .Include(c => c.CharacterId)
                 .Include(c => c.XpToLevel)
                 .AsQueryable();
 
-            var level = querry.FirstOrDefault(c => c.CharacterId == charId).Level;
-
-            var xpToLevel = level == 1 ? 30 
-                : level == 100 ? 0 
-                : level >= 50 ? (int)(((level - 1) * (double)1.13) + 30) 
-                : (int)(((level - 1) * (double)1.15) + 30);
-
-            
-            
-            return 0;
+            return query.FirstOrDefaultAsync(c => c.CharacterId == charId);
         }
 
         public Task SaveCharacterXp()
