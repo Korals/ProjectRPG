@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProjectK.Business;
 using ProjectK.Business.Characters;
+using ProjectK.Business.ExperiencePoints;
 using ProjectK.Business.Weapons;
 
 namespace ProjectK.Data
@@ -11,6 +12,7 @@ namespace ProjectK.Data
     {
         public virtual DbSet<Character> Characters { get; set; }
         public virtual DbSet<Weapon> Weapons { get; set; }
+        public virtual DbSet<Experience> Experiences { get; set; }
 
         public ProjectKContext(DbContextOptions<ProjectKContext> options) : base(options)
         {
@@ -51,6 +53,8 @@ namespace ProjectK.Data
                 entity.HasOne(e => e.Weapon)
                     .WithMany()
                     .HasForeignKey(e => e.WeaponId);
+
+
             });
 
             modelBuilder.Entity<Weapon>(entity =>
@@ -60,6 +64,13 @@ namespace ProjectK.Data
                 entity.Property(e => e.Name).HasMaxLength(255);
                 entity.Property(e => e.CreateDate).HasConversion(localDateTimeConverter);
                 entity.Property(e => e.ModifyDate).HasConversion(localDateTimeConverter);
+            });
+
+            modelBuilder.Entity<Experience>(entity =>
+            {
+                entity.HasKey(e => e.Level);
+                entity.Property(e => e.Level).UseIdentityColumn();
+                entity.Property(e => e.XpToLevel);
             });
         }
     }

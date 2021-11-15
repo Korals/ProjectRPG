@@ -42,6 +42,7 @@ namespace ProjectK.Business.Characters
 
             character.ByUser(model.UserId)
                 .WithName(model.Name)
+                //.WithLevel(exp)
                 .WithCombatStats(hitPoints, strength, defence, intelligence);
 
             await _repository.SaveCharacterAsync(character);
@@ -65,6 +66,7 @@ namespace ProjectK.Business.Characters
             character.ByUser(model.UserId)
                 .WithName(model.Name)
                 .WithCombatStats(model.HitPoints, model.Strength, model.Defence, model.Intelligence)
+                //.WithLevel(exp)
                 .WithWeapon(weapon);
 
             await _repository.SaveCharacterAsync(character);

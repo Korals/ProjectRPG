@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using ProjectK.Service.Workers;
 using Serilog;
 
 namespace ProjectK.Service
@@ -23,6 +25,7 @@ namespace ProjectK.Service
 
                     logging.AddSerilog(logger);
                 })
+                .ConfigureServices((_, services) => services.AddHostedService<TestWorker>())
                 .UseSerilog();
     }
 }

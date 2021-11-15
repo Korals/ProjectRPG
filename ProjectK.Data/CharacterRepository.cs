@@ -20,6 +20,8 @@ namespace ProjectK.Data
             var query = _context.Characters
                 // .Include(c => c.Statistics)
                 // .Include(c => c.Skills)
+                .Include(c => c.Level)
+                .Include(c => c.Experience)
                 .Include(c => c.Weapon)
                 .AsQueryable();
 

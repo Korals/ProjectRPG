@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using ProjectK.Business.ExperiencePoints;
 using ProjectK.Business.Weapons;
 using ProjectK.Contracts;
 
@@ -37,6 +38,10 @@ namespace ProjectK.Business.Characters
 
         // public ICollection<Skill> Skills { get; } = new HashSet<Skill>();
 
+        public int Level { get; private set; }
+        public long TotalXp { get; private set; }
+        public Experience Experience { get; private set; }
+
         public Character()
         {
         }
@@ -53,6 +58,9 @@ namespace ProjectK.Business.Characters
             Weapon = Weapon?.ToDto(),
             // Statistics = Statistics?.ToDto(),
             // Skills = Skills.Select(s => s.ToDto()).ToArray()
+            Level = Level,
+            TotalXp = TotalXp,
+            Experience = Experience?.ToDto(),
         };
 
         public ICharacterEdit ByUser(int userId)
